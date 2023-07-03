@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain
 
 import jakarta.persistence.*
+import jakarta.persistence.FetchType.*
 
 @Entity
 class Delivery(
@@ -8,7 +9,7 @@ class Delivery(
     @Column(name = "delivery_id")
     var id: Long? = null,
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = LAZY)
     var order: Order,
 
     @Embedded

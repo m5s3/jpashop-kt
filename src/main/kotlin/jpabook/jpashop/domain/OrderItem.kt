@@ -1,11 +1,7 @@
 package jpabook.jpashop.domain
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
+import jakarta.persistence.*
+import jakarta.persistence.FetchType.*
 import jpabook.jpashop.domain.item.Item
 
 @Entity
@@ -14,11 +10,11 @@ class OrderItem(
     @Column(name = "order_item_id")
     var id: Long? = null,
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "item_id")
     var item: Item,
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
     var order: Order,
 
