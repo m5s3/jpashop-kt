@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class MemberRepository(
-    @PersistenceContext
-    val em: EntityManager,
+    private val em: EntityManager
 ) {
     fun save(member: Member) {
         em.persist(member)

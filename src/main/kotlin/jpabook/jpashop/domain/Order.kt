@@ -28,19 +28,19 @@ class Order(
     var status: OrderStatus,
 ) {
     //==연관 관계 메서드==//
-    fun setMember(member: Member) {
+    fun addMember(member: Member) {
         this.member = member
         member.orders.add(this)
     }
 
     //==연관 관계 메서드==//
-    fun setOrderItems(orderItem: OrderItem) {
+    fun addOrderItems(orderItem: OrderItem) {
         this.orderItem.add(orderItem)
         orderItem.order = this
     }
 
     //==연관 관계 메서드==//
-    fun setDelivery(delivery: Delivery) {
+    fun addDelivery(delivery: Delivery) {
         this.delivery = delivery
         delivery.order = this
     }
