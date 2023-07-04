@@ -8,17 +8,17 @@ import jpabook.jpashop.exception.NotEnoughStockException
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 class Item(
-    var price: Int = 0,
-    var stockQuantity: Int = 0,
-
-    @ManyToMany(mappedBy = "items")
-    var categories: MutableList<Category> = mutableListOf(),
 ) {
     @Id @GeneratedValue
     @Column(name = "item_id")
     var id:Long? = null
-    var name: String? = null
+    var name = ""
 
+    var price = 0
+    var stockQuantity = 0
+
+    @ManyToMany(mappedBy = "items")
+    var categories: MutableList<Category> = mutableListOf()
     fun addStock(quantity: Int) {
         this.stockQuantity += quantity
     }
