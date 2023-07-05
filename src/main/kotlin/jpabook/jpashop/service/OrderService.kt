@@ -3,6 +3,7 @@ package jpabook.jpashop.service
 import jpabook.jpashop.domain.Delivery
 import jpabook.jpashop.domain.Order
 import jpabook.jpashop.domain.OrderItem
+import jpabook.jpashop.domain.OrderStatus
 import jpabook.jpashop.repository.ItemRepository
 import jpabook.jpashop.repository.OrderRepository
 import org.springframework.stereotype.Service
@@ -25,12 +26,14 @@ class OrderService(
         orderItem.item = item
         orderItem.orderPrice = item.price
         orderItem.count = count
+        orderItem.item!!.removeStock(count)
 
-        val order:Order = Order()
+        val order = Order()
 
         order.member = member
         order.delivery = delivery
         order.orderItems = mutableListOf(orderItem)
+        order.status = OrderStatus.ORDER
 
         orderRepository.save(order)
         return order.id!!

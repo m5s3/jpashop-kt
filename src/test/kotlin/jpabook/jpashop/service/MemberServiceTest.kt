@@ -23,7 +23,8 @@ class MemberServiceTest(
     @Test
     fun join() {
         // Given
-        val member: Member = Member(name = "park")
+        val member: Member = Member()
+        member.name = "park"
 
         // When
         val savedId: Long = memberService.join(member)
@@ -36,8 +37,10 @@ class MemberServiceTest(
     @Test
     fun validateDuplicateName() {
         // Given
-        val member1: Member = Member(name = "park")
-        val member2: Member = Member(name = "park")
+        val member1: Member = Member()
+        member1.name = "park"
+        val member2: Member = Member()
+        member2.name = "park"
 
         // When
         memberService.join(member1)

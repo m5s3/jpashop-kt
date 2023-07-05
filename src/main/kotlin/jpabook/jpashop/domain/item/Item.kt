@@ -26,6 +26,7 @@ class Item(
     fun removeStock(quantity: Int) {
         val restStock = this.stockQuantity - quantity;
         if (restStock < 0) {
+            println("restStock = ${restStock}")
             throw NotEnoughStockException("need more stock")
         }
         this.stockQuantity -= quantity

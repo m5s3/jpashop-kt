@@ -18,7 +18,7 @@ class MemberService(
     }
 
     private fun validateDuplicateMember(member: Member) {
-        val findMembers = memberRepository.findByName(member.name)
+        val findMembers = memberRepository.findByName(member.name!!)
         if (findMembers.isNotEmpty()) {
             throw IllegalStateException("이미 존재하는 회원입니다.")
         }
