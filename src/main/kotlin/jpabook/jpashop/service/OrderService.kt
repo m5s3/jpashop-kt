@@ -21,19 +21,10 @@ class OrderService(
         val member = memberService.findOne(memberId)
         val item = itemRepository.findOne(itemId)
 
-        val delivery: Delivery = Delivery()
-        val orderItem: OrderItem = OrderItem()
-        orderItem.item = item
-        orderItem.orderPrice = item.price
-        orderItem.count = count
-        orderItem.item!!.removeStock(count)
+        val delivery = Delivery()
+        val orderItem = OrderItem.of(item, item.price, count)
 
-        val order = Order()
-
-        order.member = member
-        order.delivery = delivery
-        order.orderItems = mutableListOf(orderItem)
-        order.status = OrderStatus.ORDER
+        val order = Order.of(member, delivery, mutableListOf(orderItem), OrderStatus.ORDER)
 
         orderRepository.save(order)
         return order.id!!

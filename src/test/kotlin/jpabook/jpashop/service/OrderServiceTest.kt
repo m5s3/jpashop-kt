@@ -31,7 +31,7 @@ class OrderServiceTest(
         val member = createMember()
         val book = createBook("시골 JPA", 10000, 10)
 
-        val orderCount: Int = 2
+        val orderCount = 2
 
         // When
         val orderId: Long = orderService.order(member.id!!, book.id!!, orderCount)
