@@ -33,4 +33,17 @@ class OrderItem {
     fun getTotalPrice(): Int {
         return orderPrice * count
     }
+
+
+    //==생성자 매서드==//
+    companion object {
+        fun of(item: Item, orderPrice: Int, count: Int): OrderItem {
+            item.removeStock(count)
+            return OrderItem().apply {
+                this.item = item
+                this.orderPrice = orderPrice
+                this.count = count
+            }
+        }
+    }
 }

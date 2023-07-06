@@ -27,6 +27,7 @@ class Order {
 
     @Enumerated(EnumType.STRING)
     var status: OrderStatus? = null
+
     //==연관 관계 메서드==//
     fun addMember(member: Member) {
         this.member = member
@@ -62,4 +63,16 @@ class Order {
      * 전체 주문 가격 조회
      */
     fun getTotalPrice(): Int = orderItems.sumOf { it.getTotalPrice() }
+
+    //==생성자 메서드==//
+    companion object {
+        fun of(member: Member, delivery: Delivery, orderItems: MutableList<OrderItem>, status: OrderStatus): Order {
+            return Order().apply {
+                this.member = member
+                this.delivery = delivery
+                this.orderItems = orderItems
+                this.status = status
+            }
+        }
+    }
 }
