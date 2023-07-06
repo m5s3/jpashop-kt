@@ -22,7 +22,6 @@ class ItemController(
     @PostMapping("/items/new")
     fun create(form: BookForm): String {
         val book = Book(form.name!!, form.price!!, form.stockQuantity!!, form.author!!, form.isbn!!)
-        println("book = ${book}")
         itemService.saveItem(book)
         return "redirect:/"
     }
