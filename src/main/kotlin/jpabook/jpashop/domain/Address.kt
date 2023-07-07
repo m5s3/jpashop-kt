@@ -4,7 +4,7 @@ import jakarta.persistence.Embeddable
 
 @Embeddable
 data class Address(
-    val city: String? = null,
-    val street: String? = null,
-    val zipcode: String? = null,
+    var city: String? = null,
+    var street: String? = null,
+    var zipcode: String? = null,
 )

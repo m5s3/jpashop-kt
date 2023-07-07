@@ -23,8 +23,7 @@ class MemberServiceTest(
     @Test
     fun join() {
         // Given
-        val member: Member = Member()
-        member.name = "park"
+        val member: Member = Member("park")
 
         // When
         val savedId: Long = memberService.join(member)

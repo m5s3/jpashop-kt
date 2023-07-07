@@ -4,9 +4,9 @@ import jakarta.persistence.*
 
 @Entity
 class Member(
+    var name: String,
     @OneToMany(mappedBy = "member")
     var orders: MutableList<Order> = mutableListOf(),
-
 ) {
     @Id @GeneratedValue
     @Column(name = "member_id")
@@ -14,5 +14,4 @@ class Member(
 
     @Embedded var address: Address? = null
 
-    var name: String? = null
 }
