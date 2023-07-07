@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.fail
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.transaction.annotation.Transactional
@@ -82,7 +83,9 @@ class OrderServiceTest(
     }
 
     private fun createBook(name: String, price: Int, quantity: Int): Book {
-        val book = Book(name, price, quantity)
+        val book = Book()
+        book.name = name
+        book.price = price
         book.stockQuantity = quantity
         em.persist(book)
         return book
