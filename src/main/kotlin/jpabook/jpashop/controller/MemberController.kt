@@ -29,8 +29,7 @@ class MemberController(
             return "members/createMemberForm";
         }
         val address: Address = Address(form.city, form.street, form.zipcode)
-        val member: Member = Member()
-        member.name = form.name
+        val member: Member = Member(form.name!!)
         member.address = address
 
         memberService.join(member)

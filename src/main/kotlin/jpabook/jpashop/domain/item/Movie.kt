@@ -5,10 +5,7 @@ import jakarta.persistence.Entity
 
 @Entity
 @DiscriminatorValue("M")
-class Movie(
-    name: String,
-    price: Int,
-    stockQuantity: Int,
-    director: String,
-    actor: String,
-) : Item(name = name, price = price, stockQuantity = stockQuantity)
+class Movie() : Item() {
+    val director: String = ""
+    val actor: String = ""
+}

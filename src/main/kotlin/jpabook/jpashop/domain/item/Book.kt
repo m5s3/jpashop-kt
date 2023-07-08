@@ -5,16 +5,10 @@ import jakarta.persistence.Entity
 
 @Entity
 @DiscriminatorValue("B")
-class Book(
-    name: String,
-    price: Int,
-    stockQuantity: Int,
-    author: String? = null,
-    isbn: String? = null,
-) : Item(name = name, price = price, stockQuantity = stockQuantity)
-
-//class Book(name: String, price: Int, stockQuantity: Int, author: String, isbn: String) :
-//    Item(name, price, stockQuantity) {
-//    var author: String = author
-//    var isbn: String = isbn
-//}
+class Book() : Item() {
+//    override var price: Int = 0
+//    override var name: String = ""
+//    override var stockQuantity: Int = 0
+    var author: String? = null
+    var isbn: String? = null
+}
