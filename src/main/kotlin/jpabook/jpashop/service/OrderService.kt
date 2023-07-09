@@ -4,6 +4,7 @@ import jpabook.jpashop.domain.Delivery
 import jpabook.jpashop.domain.Order
 import jpabook.jpashop.domain.OrderItem
 import jpabook.jpashop.domain.OrderStatus
+import jpabook.jpashop.dto.OrderSearch
 import jpabook.jpashop.repository.ItemRepository
 import jpabook.jpashop.repository.OrderRepository
 import org.springframework.stereotype.Service
@@ -24,7 +25,7 @@ class OrderService(
         val delivery = Delivery()
         val orderItem = OrderItem.of(item, item.price, count)
 
-        val order = Order.of(member, delivery, mutableListOf(orderItem), OrderStatus.ORDER)
+        val order = Order.of(member, delivery, mutableListOf(orderItem))
 
         orderRepository.save(order)
         return order.id!!
@@ -34,5 +35,10 @@ class OrderService(
     fun cancelOrder(orderId: Long) {
         val order = orderRepository.findOne(orderId)
         order.cancel()
+    }
+
+    @Transactional
+    fun findOrder(openSearch: OrderSearch): List<Order?> {
+        return orderRepository.findAllByString(openSearch)
     }
 }

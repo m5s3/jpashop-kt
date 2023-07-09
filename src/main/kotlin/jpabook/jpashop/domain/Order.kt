@@ -66,12 +66,14 @@ class Order {
 
     //==생성자 메서드==//
     companion object {
-        fun of(member: Member, delivery: Delivery, orderItems: MutableList<OrderItem>, status: OrderStatus): Order {
+        fun of(member: Member, delivery: Delivery, orderItems: MutableList<OrderItem>): Order {
             return Order().apply {
                 this.member = member
                 this.delivery = delivery
-                this.orderItems = orderItems
-                this.status = status
+                orderItems.map {
+                    this.addOrderItems(it)
+                }
+                this.status = OrderStatus.ORDER
             }
         }
     }

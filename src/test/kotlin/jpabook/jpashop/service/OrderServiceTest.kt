@@ -37,9 +37,11 @@ class OrderServiceTest(
 
         // Then
         val getOrder = orderRepository.findOne(orderId)
-
+        println("getOrder.orderItems[0] = ${getOrder.orderItems[0]}")
+        println("getOrder.statusadfadsfasds = ${getOrder.status?.name}")
         assertEquals(OrderStatus.ORDER, getOrder.status, "주문 상품 상태는 ORDER")
         assertEquals(1, getOrder.orderItems.size, "주문 상품 종류 수가 정확해야 한다.")
+        assertEquals("시골 JPA", getOrder.orderItems[0].item?.name, "주문 상품명에 접근 가능해야한다.")
         assertEquals(10000 * orderCount, getOrder.getTotalPrice(), "주문 가격은 가격 * 수량이다.")
         assertEquals(8, book.stockQuantity, "주문 수량만큼 재고가 줄어야 한다.")
     }
@@ -82,15 +84,16 @@ class OrderServiceTest(
     }
 
     private fun createBook(name: String, price: Int, quantity: Int): Book {
-        val book = Book(name, price, quantity)
+        val book = Book()
+        book.name = name
+        book.price = price
         book.stockQuantity = quantity
         em.persist(book)
         return book
     }
 
     private fun createMember(): Member {
-        val member: Member = Member()
-        member.name = "회원1"
+        val member: Member = Member("회원1")
         member.address = Address("서울", "강가", "123-123")
         em.persist(member)
         return member
