@@ -8,5 +8,4 @@ import jakarta.persistence.Entity
 class Album () : Item() {
     var artist: String? = ""
     var etc: String? = ""
-
 }
