@@ -20,7 +20,7 @@ class OrderRepository(
         return em.find(Order::class.java, orderId)
     }
 
-    fun findAllByString(orderSearch: OrderSearch): List<Order?> {
+    fun findAllByString(orderSearch: OrderSearch): List<Order?>? {
         var jpql = "select o from Order o join o.member m"
         var isFirstCondition = true
 

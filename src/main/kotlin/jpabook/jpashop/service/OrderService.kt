@@ -38,7 +38,7 @@ class OrderService(
     }
 
     @Transactional
-    fun findOrder(openSearch: OrderSearch): List<Order?> {
+    fun findOrder(openSearch: OrderSearch): List<Order?>? {
         return orderRepository.findAllByString(openSearch)
     }
 }
