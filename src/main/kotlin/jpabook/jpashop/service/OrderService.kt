@@ -5,6 +5,7 @@ import jpabook.jpashop.domain.Order
 import jpabook.jpashop.domain.OrderItem
 import jpabook.jpashop.domain.OrderStatus
 import jpabook.jpashop.dto.OrderSearch
+import jpabook.jpashop.dto.SimpleOrderDto
 import jpabook.jpashop.repository.ItemRepository
 import jpabook.jpashop.repository.OrderRepository
 import org.springframework.stereotype.Service
@@ -40,5 +41,10 @@ class OrderService(
     @Transactional
     fun findOrder(openSearch: OrderSearch): List<Order?>? {
         return orderRepository.findAllByString(openSearch)
+    }
+
+    @Transactional
+    fun findAllWithMemberDelivery(): List<Order> {
+        return orderRepository.findAllWithMemberDelivery()
     }
 }

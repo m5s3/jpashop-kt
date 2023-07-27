@@ -80,4 +80,8 @@ class OrderRepository(
         val query: TypedQuery<Order> = em.createQuery(cq).setMaxResults(1000)
         return query.resultList
     }
+
+    fun findAllWithMemberDelivery(): List<Order> {
+        return em.createQuery("SELECT o FROM Order o JOIN FETCH o.member JOIN FETCH o.delivery", Order::class.java).resultList
+    }
 }
