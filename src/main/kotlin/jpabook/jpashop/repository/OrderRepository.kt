@@ -84,4 +84,13 @@ class OrderRepository(
     fun findAllWithMemberDelivery(): List<Order> {
         return em.createQuery("SELECT o FROM Order o JOIN FETCH o.member JOIN FETCH o.delivery", Order::class.java).resultList
     }
+
+    fun findAllWithMemberDelivery(offset: Int, limit: Int): List<Order> {
+        return em.createQuery("SELECT o FROM Order o " +
+                " JOIN FETCH o.member m" +
+                " JOIN FETCH o.delivery d", Order::class.java)
+            .setFirstResult(offset)
+            .setMaxResults(limit)
+            .resultList
+    }
 }

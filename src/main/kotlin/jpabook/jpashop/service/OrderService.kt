@@ -47,4 +47,8 @@ class OrderService(
     fun findAllWithMemberDelivery(): List<Order> {
         return orderRepository.findAllWithMemberDelivery()
     }
+
+    fun findAllWithMemberDelivery(offset: Int, limit: Int): List<Order> {
+        return orderRepository.findAllWithMemberDelivery(offset, limit)
+    }
 }

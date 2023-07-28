@@ -73,6 +73,7 @@ class Order {
                 orderItems.map {
                     this.addOrderItems(it)
                 }
+                this.orderDate = LocalDateTime.now()
                 this.status = OrderStatus.ORDER
             }
         }
